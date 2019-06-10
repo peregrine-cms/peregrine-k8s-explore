@@ -39,7 +39,7 @@ continuing.
 
         $ kubectl create -f peregrine-statefulset.yml
 
-4. Forward a local port so that use can access Peregrine.
+4. Forward a local port so that you can access Peregrine.
 
         $ kubectl port-forward peregrine-0 8080:8080
 
@@ -48,4 +48,4 @@ continuing.
 
 # Additional Notes
 
-* The StatefulSet uses an initContainer to bootstrap the JCR data from the Docker onto the PersistentVolume mount point.
+* The StatefulSet uses an initContainer to bootstrap the JCR data from the Docker image onto the PersistentVolume mount point.
