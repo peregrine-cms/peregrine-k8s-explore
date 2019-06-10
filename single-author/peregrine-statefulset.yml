@@ -16,7 +16,7 @@ spec:
         command:
         - sh
         - -c
-        - 'if [ ! -d /app1/sling ]; then tar -cf /app.tar /app && tar -xf /app.tar -C /app1 --strip 1; fi' 
+        - 'if [ ! -d /app1/sling ]; then tar -cf - /app | tar -C /app1 --strip 1 -xf -; fi' 
         volumeMounts:
         - name: data
           mountPath: /app1
@@ -35,6 +35,6 @@ spec:
     spec:
       resources:
         requests:
-          storage: 5Mi
+          storage: 5Gi
       accessModes:
       - ReadWriteOnce
