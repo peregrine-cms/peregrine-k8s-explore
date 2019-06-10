@@ -2,7 +2,7 @@
 
 This module defines an approach for running Peregrine as a single author instance on
 Kubernetes. It uses a StatefulSet, a PersistentVolume and a PersistentVolumeContainer to
-ensure that JCR data is peresisted across pod deletions.
+ensure that JCR data is persisted across pod deletions.
 
 # Prerequisites
 
@@ -25,7 +25,7 @@ The `/mnt/disk/vol1` directory should be created on k8sworker1 and k8sworker2 be
 continuing.
 
 
-## Deploying Peregrine to Kubernetes
+# Deploying Peregrine to Kubernetes
 
 1. Manually allocate two (2) PersistentVolumes (local volumes). 
 
@@ -45,3 +45,7 @@ continuing.
 
 5. Open a browser and visit http://localhost:8080
 
+
+# Additional Notes
+
+* The StatefulSet uses an initContainer to bootstrap the JCR data from the Docker onto the PersistentVolume mount point.
