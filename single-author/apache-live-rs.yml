@@ -1,0 +1,25 @@
+apiVersion: apps/v1beta2
+kind: ReplicaSet
+metadata:
+  name: apache-live
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apache-live
+  template:
+    metadata:
+      labels:
+        app: apache-live
+    spec:
+      containers:
+        - name: apache-live
+          image: peregrinecms/apache-live
+          ports:
+          - name: http
+            containerPort: 80
+          env:
+            - name: APACHE_PROXY_URL
+              value: http://peregrine:8080/
+            - name: APACHE_DOMAIN
+              value: live.peregrine.cxm
