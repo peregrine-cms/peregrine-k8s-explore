@@ -23,3 +23,5 @@ spec:
               value: http://peregrine:8080/
             - name: APACHE_DOMAIN
               value: live.peregrine.cxm
+            - name: PEREGRINE_SITE
+              value: themeclean
