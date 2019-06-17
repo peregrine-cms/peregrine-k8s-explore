@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: apache-author
 spec:
-  clusterIP: None
+  type: NodePort
   selector:
     app: apache-author
   ports:

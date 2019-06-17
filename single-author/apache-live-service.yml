@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: apache-live
 spec:
-  clusterIP: None
+  type: NodePort
   selector:
     app: apache-live
   ports:
