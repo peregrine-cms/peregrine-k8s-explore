@@ -1,20 +1,20 @@
 apiVersion: apps/v1beta2
 kind: ReplicaSet
 metadata:
-  name: apache-author
+  name: apache-stage
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: apache-author
+      app: apache-stage
   template:
     metadata:
       labels:
-        app: apache-author
+        app: apache-stage
     spec:
       containers:
-        - name: apache-author
-          image: peregrinecms/apache-author
+        - name: apache-stage
+          image: peregrinecms/apache-stage
           ports:
           - name: http
             containerPort: 80
@@ -22,4 +22,4 @@ spec:
             - name: APACHE_PROXY_URL
               value: http://peregrine:8080/
             - name: APACHE_DOMAIN
-              value: author.peregrine.cxm
+              value: stage.peregrine.cxm
