@@ -5,7 +5,7 @@
 This document makes several assumptions about the Kubernetes cluster:
 
 1. It is a bare metal k8s cluster created with `kubeadm`.
-2. Local disks will on the worker nodes are used for PersistentVolumes.
+2. Local disks are used on the worker nodes for PersistentVolumes.
 3. Namespaces are used to segment Peregrine deployments. We assume 1 namespace per site.
 
 # Deploying a site with Helm
