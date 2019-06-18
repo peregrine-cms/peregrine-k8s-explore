@@ -1,51 +1,48 @@
-# Single Author Deployment
-
-This module defines an approach for running Peregrine as a single author instance on
-Kubernetes. It uses a StatefulSet, a PersistentVolume and a PersistentVolumeContainer to
-ensure that JCR data is persisted across pod deletions.
-
-# Prerequisites
-
-The configuration that follows was designed to run on an on-permise Kubernetes cluster that
-was deployed on bare metal servers using kubeadm. Since the deployment pattern uses
-local volumes, there are portions of the configuration that refer to k8s nodes by name. 
-Our environment is a 3-node cluster with the following nodes.
-
-* k8smaster
-* k8sworker1
-* k8sworker2
-
-Since local volumes are used, the following directories where created on each worker node:
-
-```
-$ k8sworkerN ~$ sudo -p /mnt/disk/vol1
-```
-
-The `/mnt/disk/vol1` directory should be created on k8sworker1 and k8sworker2 before 
-continuing.
-
-
 # Deploying Peregrine to Kubernetes
 
-1. Manually allocate two (2) PersistentVolumes (local volumes). 
+## Before you begin
 
-        $ kubectl create -f peregrine-pv.yml
+This document makes several assumptions about the Kubernetes cluster:
 
-2. Create a headless Service to support service discovery between nodes.
+1. It is a bare metal k8s cluster created with `kubeadm`.
+2. Local disks will on the worker nodes are used for PersistentVolumes.
+3. Namespaces are used to segment Peregrine deployments. We assume 1 namespace per site.
 
-        $ kubectl create -f peregrine-service-headless.yml
+# Deploying a site with Helm
 
-3. Create a StatefulSet with 1 Peregrine replica.
+TODO
 
-        $ kubectl create -f peregrine-statefulset.yml
+# Deploying a site (Manually)
 
-4. Forward a local port so that you can access Peregrine.
+1. Create a namespace for your site. We will use `gastongonzalez` as an example.
 
-        $ kubectl port-forward peregrine-0 8080:8080
+        $ kubectl create namespace gastongonzalez
 
-5. Open a browser and visit http://localhost:8080
+2. Log into each worker node in your cluster and create a directory called `/mnt/disk/vol1`. Then, 
+   Edit `peregrine-pv.yml` and change the `nodeAffinity` values to match the hostnames of your worker
+    nodes. Lastly, create the PersistentVolumes.
+
+        $ kubectl create --namespace=gastongonzalez -f peregrine-pv.yml
+
+3. Create a StatefulSet for Peregrine. This will create a StatefulSet that manages one instance of 
+   Peregrine.
+
+        $ kubectl create --namespace=gastongonzalez  -f peregrine-statefulset.yml
+
+4. Create a headless Service for Peregrine. This will allow other services such as Apache to discover 
+   the Peregrine pod(s).
+
+        $ kubectl create --namespace=gastongonzalez -f peregrine-service-headless.yml
 
 
-# Additional Notes
+5. Create ReplicaSets to manage the Apache live and stage pods.
 
-* The StatefulSet uses an initContainer to bootstrap the JCR data from the Docker image onto the PersistentVolume mount point.
+        $ kubectl create --namespace=gastongonzalez -f apache-live-rs.yml
+        $ kubectl create --namespace=gastongonzalez -f apache-stage-rs.yml
+
+6. Create NodePort Services so that you can access the live and stage pods.
+
+        $ kubectl create --namespace=gastongonzalez -f apache-live-service.yml
+        $ kubectl create --namespace=gastongonzalez -f apache-stage-service.yml
+
+7. Access the apache-live and apache-stage services using the NodePort. 
