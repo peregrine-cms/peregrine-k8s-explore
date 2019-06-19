@@ -14,35 +14,37 @@ TODO
 
 # Deploying a site (Manually)
 
-1. Create a namespace for your site. We will use `gastongonzalez` as an example.
+1. Create a namespace for your site. We will use `gastongonzalez` as an example. Then, set this namespace
+   as your default.
 
         $ kubectl create namespace gastongonzalez
+        $ kubectl config set-context $(kubectl config current-context) --namespace=gastongonzalez
 
 2. Log into each worker node in your cluster and create a directory called `/mnt/disk/vol1`. Then, 
    Edit `peregrine-pv.yml` and change the `nodeAffinity` values to match the hostnames of your worker
     nodes. Lastly, create the PersistentVolumes.
 
-        $ kubectl create --namespace=gastongonzalez -f peregrine-pv.yml
+        $ kubectl create -f peregrine-pv.yml
 
 3. Create a StatefulSet for Peregrine. This will create a StatefulSet that manages one instance of 
    Peregrine.
 
-        $ kubectl create --namespace=gastongonzalez  -f peregrine-statefulset.yml
+        $ kubectl create -f peregrine-statefulset.yml
 
 4. Create a headless Service for Peregrine. This will allow other services such as Apache to discover 
    the Peregrine pod(s).
 
-        $ kubectl create --namespace=gastongonzalez -f peregrine-service-headless.yml
+        $ kubectl create -f peregrine-service-headless.yml
 
 
 5. Create ReplicaSets to manage the Apache live and stage pods.
 
-        $ kubectl create --namespace=gastongonzalez -f apache-live-rs.yml
-        $ kubectl create --namespace=gastongonzalez -f apache-stage-rs.yml
+        $ kubectl create -f apache-live-rs.yml
+        $ kubectl create -f apache-stage-rs.yml
 
 6. Create NodePort Services so that you can access the live and stage pods.
 
-        $ kubectl create --namespace=gastongonzalez -f apache-live-service.yml
-        $ kubectl create --namespace=gastongonzalez -f apache-stage-service.yml
+        $ kubectl create -f apache-live-service.yml
+        $ kubectl create -f apache-stage-service.yml
 
 7. Access the apache-live and apache-stage services using the NodePort. 
