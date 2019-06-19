@@ -20,6 +20,13 @@ TODO
         $ kubectl create namespace gastongonzalez
         $ kubectl config set-context $(kubectl config current-context) --namespace=gastongonzalez
 
+2. Edit the values of the environment variables defined in the ConfigMaps. `live-configmap.yml` defines
+   the variables for your live instance, and `stage-configmap.yml` defines the variables for your stage
+   instance. Then, create the ConfigMaps.
+
+        $ kubectl create -f live-configmap.yml
+        $ kubectl create -f stage-configmap.yml
+
 2. Log into each worker node in your cluster and create a directory called `/mnt/disk/vol1`. Then, 
    Edit `peregrine-pv.yml` and change the `nodeAffinity` values to match the hostnames of your worker
     nodes. Lastly, create the PersistentVolumes.
