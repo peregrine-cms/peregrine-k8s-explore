@@ -6,3 +6,4 @@ data:
   APACHE_PROXY_URL: http://peregrine:8080/
   APACHE_DOMAIN: live.peregrine.cxm
   PEREGRINE_SITE: themeclean
+  K8S_NAMESPACE: default

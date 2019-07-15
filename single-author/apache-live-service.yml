@@ -4,6 +4,7 @@ metadata:
   name: apache-live
 spec:
   type: NodePort
+  externalTrafficPolicy: Local
   selector:
     app: apache-live
   ports:
