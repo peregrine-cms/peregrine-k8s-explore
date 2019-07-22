@@ -1,5 +1,5 @@
 apiVersion: v1
-name: peregrine-chart
+name: peregrine
 version: 1.0.0
 appVersion: 1.0.0
 description: Single instance of Peregrine CMS with stage and live web servers

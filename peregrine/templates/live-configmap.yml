@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "live-{{ template "fullname" . }}"
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+  APACHE_PROXY_URL: {{ .Values.apache.proxyUrl }}
+  APACHE_DOMAIN: {{ .Values.apache.liveDomain }}
+  PEREGRINE_SITE: {{ .Values.peregrine.site }}
+  K8S_NAMESPACE: {{ .Values.k8s.namespace }}

@@ -1,0 +1,10 @@
+peregrine: 
+  site: themeclean
+
+k8s:
+  namespace: default
+
+apache:
+  proxyUrl: http://peregrine:8080/
+  liveDomain: live.peregrine.cxm
+  stageDomain: stage.peregrine.cxm
