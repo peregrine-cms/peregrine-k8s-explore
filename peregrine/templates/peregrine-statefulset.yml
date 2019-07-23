@@ -1,0 +1,45 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  serviceName: peregrine
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: peregrine
+    spec:
+      initContainers:
+      - name: init
+        image: peregrinecms/peregrine-cms
+        command:
+        - sh
+        - -c
+        - 'if [ ! -d /app1/sling ]; then tar -cf - /app | tar -C /app1 --strip 1 -xf -; fi' 
+        volumeMounts:
+        - name: data
+          mountPath: /app1
+      containers:
+        - name: peregrine
+          image: peregrinecms/peregrine-cms
+          ports:
+          - name: http
+            containerPort: 8080
+          volumeMounts:
+          - name: data
+            mountPath: /app
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      resources:
+        requests:
+          storage: 5Gi
+      accessModes:
+      - ReadWriteOnce

@@ -11,6 +11,16 @@ This chart bootstraps a single Peregrine instance with an Apache instance for yo
 - Kubernetes 1.14+
 - PV provisioner support in the underlying infrastructure
 
+## Persistence
+
+The [peregrine-cms](https://hub.docker.com/r/peregrinecms/peregrine-cms) image stores the data and configurations at the `/apps` path of the container.
+
+By default persistence is enabled, and a PersistentVolumeClaim is created and mounted in that directory. As a result, a persistent volume will need to be defined:
+
+```bash
+$ k create -f peregrine-pv.yml 
+```
+
 ## Installing the Chart
 
 To install the chart with the release name `peregrine-release`:
@@ -37,16 +47,8 @@ The following table lists the configurable parameters of the Pergrine chart and 
 | -----------------------------------------    | ------------------------------------------------- | -------------------------------------- |
 | `peregrine.site`                             | Peregrine site name                               | `themeclean`                           |
 | `k8s.namespace`                              | Kubernetes namespace for the deployment           | `default`                              |
-| `apache.proxyUrl`                            | Apache proxy path to Peregrine                    | `http://peregrine:8080/`               |
 | `apache.liveDomain`                          | Apache live domain name                           | `live.peregrine.cxm`                   |
 | `apache.stageDomain`                         | Apache stage domain name                          | `stage.peregrine.cxm`                  |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
-## Persistence
-
-The [peregrine-cms](https://hub.docker.com/r/peregrinecms/peregrine-cms) image stores the data and configurations at the `/apps` path of the container.
-
-By default persistence is enabled, and a PersistentVolumeClaim is created and mounted in that directory. As a result, a persistent volume will need to be defined:
-
-TODO
