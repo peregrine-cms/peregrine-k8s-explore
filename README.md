@@ -23,10 +23,10 @@ $ k create -f peregrine-pv.yml
 
 ## Installing the Chart
 
-To install the chart with the release name `peregrine-release`:
+To install the chart with the release name `r1`:
 
 ```bash
-$ helm install --name peregrine-release peregrine
+$ helm install --name r1 peregrine
 ```
 
 The command deploys Peregrine on the Kubernetes cluster in the default configuration. The [configuration](#configuration) section lists the parameters that can be configured during installation.
@@ -46,7 +46,6 @@ The following table lists the configurable parameters of the Pergrine chart and 
 | Parameter                                    | Description                                       | Default                                |
 | -----------------------------------------    | ------------------------------------------------- | -------------------------------------- |
 | `peregrine.site`                             | Peregrine site name                               | `themeclean`                           |
-| `k8s.namespace`                              | Kubernetes namespace for the deployment           | `default`                              |
 | `apache.liveDomain`                          | Apache live domain name                           | `live.peregrine.cxm`                   |
 | `apache.stageDomain`                         | Apache stage domain name                          | `stage.peregrine.cxm`                  |
 

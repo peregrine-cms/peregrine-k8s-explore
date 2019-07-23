@@ -1,9 +1,6 @@
 peregrine: 
   site: themeclean
 
-k8s:
-  namespace: default
-
 apache:
   liveDomain: live.peregrine.cxm
   stageDomain: stage.peregrine.cxm

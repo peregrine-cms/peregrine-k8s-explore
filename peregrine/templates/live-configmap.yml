@@ -11,4 +11,4 @@ data:
   APACHE_PROXY_URL: http://peregrine-{{ template "fullname" . }}:8080/
   APACHE_DOMAIN: {{ .Values.apache.liveDomain }}
   PEREGRINE_SITE: {{ .Values.peregrine.site }}
-  K8S_NAMESPACE: {{ .Values.k8s.namespace }}
+  K8S_NAMESPACE: {{ .Release.Namespace }}
