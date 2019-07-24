@@ -13,7 +13,10 @@ spec:
   template:
     metadata:
       labels:
-        app: peregrine
+        app: {{ template "fullname" . }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
     spec:
       initContainers:
       - name: init
