@@ -48,6 +48,9 @@ The following table lists the configurable parameters of the Pergrine chart and 
 | `peregrine.site`                             | Peregrine site name                               | `themeclean`                           |
 | `apache.liveDomain`                          | Apache live domain name                           | `live.peregrine.cxm`                   |
 | `apache.stageDomain`                         | Apache stage domain name                          | `stage.peregrine.cxm`                  |
+| `k8s.apacheLiveServiceType`                  | Service type for live Apache service              | `LoadBalancer`                         |
+
+Note: If you are running a kubeadm cluster, change k8s.apacheLiveServiceType tp `NodePort`.
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 

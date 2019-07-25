@@ -12,7 +12,7 @@ spec:
     spec:
       initContainers:
       - name: init
-        image: peregrinecms/peregrine-cms:develop
+        image: peregrinecms/peregrine-cms:stable
         command:
         - sh
         - -c
@@ -22,7 +22,7 @@ spec:
           mountPath: /app1
       containers:
         - name: peregrine
-          image: peregrinecms/peregrine-cms:develop
+          image: peregrinecms/peregrine-cms:stable
           ports:
           - name: http
             containerPort: 8080

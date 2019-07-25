@@ -1,6 +1,9 @@
 peregrine: 
   site: themeclean
 
+k8s:
+  apacheLiveServiceType: LoadBalancer
+
 apache:
   liveDomain: live.peregrine.cxm
   stageDomain: stage.peregrine.cxm
