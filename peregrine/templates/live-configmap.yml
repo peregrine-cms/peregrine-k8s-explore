@@ -8,7 +8,7 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 data:
-  APACHE_PROXY_URL: http://peregrine-{{ template "fullname" . }}:8080/
+  APACHE_PROXY_URL: http://peregrine-{{ template "fullname" . }}/
   APACHE_DOMAIN: {{ .Values.apache.liveDomain }}
   PEREGRINE_SITE: {{ .Values.peregrine.site }}
   K8S_NAMESPACE: {{ .Release.Namespace }}

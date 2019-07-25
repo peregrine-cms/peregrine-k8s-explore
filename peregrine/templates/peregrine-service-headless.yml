@@ -8,9 +8,8 @@ metadata:
     release: "{{ .Release.Name }}"
 
 spec:
-  clusterIP: None
   selector:
-    app: peregrine
+    app: {{ template "fullname" . }}
   ports:
   - name: http
     port: 80
