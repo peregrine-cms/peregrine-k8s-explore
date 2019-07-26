@@ -62,8 +62,6 @@ The following table lists the configurable parameters of the Pergrine chart and 
 | `k8s.apacheLiveServiceType`                  | Service type for live Apache service              | `LoadBalancer`                         |
 | `k8s.apacheStageServiceType`                 | Service type for stage Apache service             | `LoadBalancer`                         |
 
-Note: If you are running a kubeadm cluster, change k8s.apacheLiveServiceType tp `NodePort`.
-
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
 For example, to create your Peregrine with a large disk (i.e. 10GB), you can override the storage size as follows:
@@ -119,7 +117,7 @@ $ kubectl create -f extra/rbac-kubeadm.yaml
 $ helm init --service-account tiller --history-max 200
 ```
 
-3. Deploy Peregrine via the Helm chart.
+3. Deploy Peregrine via the Helm chart. Notice that we are changing the Apache services to use a NodePort instead of the LoadBalancer since kubeadm does not support LoadBalancer.
 
 ```bash
 $ helm install --name r1 peregrine --set k8s.apacheLiveServiceType=NodePort,k8s.apacheStageServiceType=NodePort
