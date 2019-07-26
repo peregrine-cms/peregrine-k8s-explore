@@ -85,7 +85,7 @@ Note: These steps are not needed if you are running on a cloud provider such as 
 
 ### PersistentVolumes
 
-1.You need to provision a PersistentVolume. Begin by logging into one of your
+1. You need to manually provision a PersistentVolume. Begin by logging into one of your
 worker nodes and create a directory for use by the PersistentVolumeClaim. 
 
 ```bash
@@ -99,8 +99,8 @@ $ sudo mkdir -p /mnt/disk/vol1
 $ cp extra/peregrine-pv-kubeadm.yaml peregrine/templates
 ```
 
-3. Edit `peregrine/templates/peregrine-pv-kubeadm.yaml` and replace the hostname with the name of the
-worker where you created the mount point.
+3. Edit `peregrine/templates/peregrine-pv-kubeadm.yaml` and replace _yourworkerhostname_ with the hostname of the
+worker where you created the directory for the PersistentVolume.
 
 
 ### Helm

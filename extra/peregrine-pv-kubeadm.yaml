@@ -20,4 +20,4 @@ items:
           - key: kubernetes.io/hostname
             operator: In
             values:
-            - k8sworker1
+            - yourworkerhostname
