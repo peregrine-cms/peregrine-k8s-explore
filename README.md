@@ -10,11 +10,21 @@ This chart bootstraps a single Peregrine instance with an Apache instance for yo
 
 - Kubernetes 1.14+
 - PV provisioner support in the underlying infrastructure
+- Helm 2.14+
 
+
+## Supported Platforms
+
+The following Kubernetes runtimes are known to work with this Helm chart:
+
+- Google Kubernetes Engine (GKE)
+- Bare metal (kubeadmin)  
+
+Note: For bare metal k8s clusters refer to the Bare Metal section below first.
 
 ## Installing the Chart
 
-To install the chart with the release name `r1`:
+To install the chart with the release name `r1` invoke:
 
 ```bash
 $ helm install --name r1 peregrine
@@ -65,15 +75,52 @@ NAME                                       CAPACITY   ACCESS MODES   RECLAIM POL
 pvc-2d40e730-afc9-11e9-a43e-42010aa80005   10Gi       RWO            Delete           Bound    default/data-r4-peregrine-0   standard                24s
 ```
 
-# Persistence
+## GKE
 
-The [peregrine-cms](https://hub.docker.com/r/peregrinecms/peregrine-cms) image stores the data and configurations at the `/apps` path of the container.
+TODO
 
-By default persistence is enabled, and a PersistentVolumeClaim is created and mounted in that directory. As a result, a persistent volume will need to be defined:
+## Bare Metal (kubeadm)
 
+Additional configuration is needed when the target cluster is running on bare metal (i.e. kubeadm).
 
-### kubeadm
+Note: These steps are not needed if you are running on a cloud provider such as GKE.
+
+### PersistentVolumes
+
+1.You need to provision a PersistentVolume. Begin by logging into one of your
+worker nodes and create a directory for use by the PersistentVolumeClaim. 
 
 ```bash
-$ k create -f peregrine-pv.yml 
+$ ssh someworker
+$ sudo mkdir -p /mnt/disk/vol1
+```
+
+2. Copy the sample PersistentVolume file to `peregrine/templates`.
+
+```bash
+$ cp extra/peregrine-pv-kubeadm.yaml peregrine/templates
+```
+
+3. Edit `peregrine/templates/peregrine-pv-kubeadm.yaml` and replace the hostname with the name of the
+worker where you created the mount point.
+
+
+### Helm
+
+1. Deploy role based access controlls for Tiller.
+
+```bash
+$ kubectl create -f extra/rbac-kubeadm.yaml 
+```
+
+2. Initialize Helm.
+
+```bash
+$ helm init --service-account tiller --history-max 200
+```
+
+3. Deploy Peregrine via the Helm chart.
+
+```bash
+$ helm install --name r1 peregrine --set k8s.apacheLiveServiceType=NodePort,k8s.apacheStageServiceType=NodePort
 ```
