@@ -1,18 +1,26 @@
 apiVersion: apps/v1beta1
 kind: StatefulSet
 metadata:
-  name: peregrine
+  name: {{ template "fullname" . }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
 spec:
-  serviceName: peregrine
+  serviceName: peregrine-{{ template "fullname" . }}
   replicas: 1
   template:
     metadata:
       labels:
-        app: peregrine
+        app: {{ template "fullname" . }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
     spec:
       initContainers:
       - name: init
-        image: peregrinecms/peregrine-cms:develop
+        image: peregrinecms/peregrine-cms:stable
         command:
         - sh
         - -c
@@ -22,7 +30,10 @@ spec:
           mountPath: /app1
       containers:
         - name: peregrine
-          image: peregrinecms/peregrine-cms:develop
+          image: peregrinecms/peregrine-cms:stable
+          env:
+          - name: _JAVA_OPTIONS
+            value: -Dos.version=4.14.127
           ports:
           - name: http
             containerPort: 8080
@@ -35,6 +46,6 @@ spec:
     spec:
       resources:
         requests:
-          storage: 5Gi
+          storage: {{ .Values.peregrine.storage }}
       accessModes:
       - ReadWriteOnce

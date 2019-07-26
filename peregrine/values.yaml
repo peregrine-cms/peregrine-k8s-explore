@@ -1,0 +1,11 @@
+peregrine: 
+  site: themeclean
+  storage: 5Gi
+
+k8s:
+  apacheLiveServiceType: LoadBalancer
+  apacheStageServiceType: LoadBalancer
+
+apache:
+  liveDomain: live.peregrine.cxm
+  stageDomain: stage.peregrine.cxm

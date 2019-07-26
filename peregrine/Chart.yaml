@@ -1,0 +1,10 @@
+apiVersion: v1
+name: peregrine
+version: 1.0.0
+appVersion: 1.0.0
+description: Single instance of Peregrine CMS with stage and live web servers
+keywords:
+  - peregrine
+  - cms
+home: http://www.peregrine-cms.com/
+icon: http://www.peregrine-cms.com/etc/felibs/admin/images/peregrine-logo.png

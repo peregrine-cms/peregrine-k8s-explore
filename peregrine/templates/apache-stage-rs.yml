@@ -1,0 +1,27 @@
+apiVersion: apps/v1beta2
+kind: ReplicaSet
+metadata:
+  name: "apache-stage-{{ template "fullname" . }}"
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "apache-stage-{{ template "fullname" . }}"
+  template:
+    metadata:
+      labels:
+        app: "apache-stage-{{ template "fullname" . }}"
+    spec:
+      containers:
+        - name: "apache-stage-{{ template "fullname" . }}"
+          image: peregrinecms/apache-stage
+          ports:
+          - name: http
+            containerPort: 80
+          envFrom:
+          - configMapRef:
+              name: "stage-{{ template "fullname" . }}"
