@@ -3,6 +3,7 @@ peregrine:
 
 k8s:
   apacheLiveServiceType: LoadBalancer
+  apacheStageServiceType: LoadBalancer
 
 apache:
   liveDomain: live.peregrine.cxm

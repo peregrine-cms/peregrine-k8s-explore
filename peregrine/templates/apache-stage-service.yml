@@ -7,7 +7,8 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
 spec:
-  type: NodePort
+  type: {{ .Values.k8s.apacheStageServiceType }}
+  externalTrafficPolicy: Local
   selector:
     app: "apache-stage-{{ template "fullname" . }}"
   ports:
