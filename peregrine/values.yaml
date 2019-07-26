@@ -1,5 +1,6 @@
 peregrine: 
   site: themeclean
+  storage: 5Gi
 
 k8s:
   apacheLiveServiceType: LoadBalancer
