@@ -20,7 +20,7 @@ spec:
     spec:
       initContainers:
       - name: init
-        image: peregrinecms/peregrine-cms:stable
+        image: peregrinecms/peregrine-cms:sling11
         command:
         - sh
         - -c
@@ -30,10 +30,7 @@ spec:
           mountPath: /app1
       containers:
         - name: peregrine
-          image: peregrinecms/peregrine-cms:stable
-          env:
-          - name: _JAVA_OPTIONS
-            value: -Dos.version=4.14.127
+          image: peregrinecms/peregrine-cms:sling11
           ports:
           - name: http
             containerPort: 8080
