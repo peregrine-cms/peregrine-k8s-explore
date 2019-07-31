@@ -4,7 +4,12 @@ items:
 - apiVersion: v1
   kind: PersistentVolume
   metadata:
-    name: data-{{ template "fullname" . }}-0
+    name: worker1-data-{{ template "fullname" . }}-0
+    labels:
+      app: {{ template "fullname" . }}
+      chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+      release: "{{ .Release.Name }}"
+      heritage: "{{ .Release.Service }}"
   spec:
     capacity:
       storage: {{ .Values.peregrine.storage }}
@@ -12,7 +17,7 @@ items:
     - ReadWriteOnce
     persistentVolumeReclaimPolicy: Retain
     local:
-      path: /mnt/disk/vol1
+      path: /mnt/disk/vol2
     nodeAffinity:
       required:
         nodeSelectorTerms:
@@ -20,4 +25,29 @@ items:
           - key: kubernetes.io/hostname
             operator: In
             values:
-            - yourworkerhostname
+            - k8sworker1
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: worker2-data-{{ template "fullname" . }}-0
+    labels:
+      app: {{ template "fullname" . }}
+      chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+      release: "{{ .Release.Name }}"
+      heritage: "{{ .Release.Service }}"
+  spec:
+    capacity:
+      storage: {{ .Values.peregrine.storage }}
+    accessModes:
+    - ReadWriteOnce
+    persistentVolumeReclaimPolicy: Retain
+    local:
+      path: /mnt/disk/vol2
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+            - k8sworker2
