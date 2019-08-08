@@ -8,6 +8,7 @@ metadata:
     release: "{{ .Release.Name }}"
 
 spec:
+  clusterIP: None
   selector:
     app: {{ template "fullname" . }}
   ports:
