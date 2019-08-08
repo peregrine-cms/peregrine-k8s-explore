@@ -20,7 +20,7 @@ spec:
     spec:
       initContainers:
       - name: init
-        image: peregrinecms/peregrine-cms:sling11
+        image: peregrinecms/peregrine-cms:{{ .Values.docker.peregrineImageTag }}
         command:
         - sh
         - -c
@@ -30,7 +30,7 @@ spec:
           mountPath: /app1
       containers:
         - name: peregrine
-          image: peregrinecms/peregrine-cms:sling11
+          image: peregrinecms/peregrine-cms:{{ .Values.docker.peregrineImageTag }}
           ports:
           - name: http
             containerPort: 8080

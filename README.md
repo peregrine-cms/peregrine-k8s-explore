@@ -61,6 +61,7 @@ The following table lists the configurable parameters of the Pergrine chart and 
 | `apache.stageDomain`                         | Apache stage domain name                          | `stage.peregrine.cxm`                  |
 | `k8s.apacheLiveServiceType`                  | Service type for live Apache service              | `LoadBalancer`                         |
 | `k8s.apacheStageServiceType`                 | Service type for stage Apache service             | `LoadBalancer`                         |
+| `docker.peregrineImageTag`                   | Docker image tag to use for Peregrine             | `sling11`                              |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
@@ -105,16 +106,10 @@ worker where you created the directory for the PersistentVolume.
 
 ### Helm
 
-1. Deploy role based access controlls for Tiller.
+1. Install Helm / Tiller
 
 ```bash
-$ kubectl create -f extra/rbac-kubeadm.yaml 
-```
-
-2. Initialize Helm.
-
-```bash
-$ helm init --service-account tiller --history-max 200
+$ scripts/install-tiller.sh
 ```
 
 3. Deploy Peregrine via the Helm chart. Notice that we are changing the Apache services to use a NodePort instead of the LoadBalancer since kubeadm does not support LoadBalancer.

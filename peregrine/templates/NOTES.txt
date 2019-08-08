@@ -1,0 +1,19 @@
+Thank you for installing Peregrine CMS.
+
+Your release is named {{ .Release.Name }}.
+
+Please perform the following steps to configure PageSpeed Cache Invalidation.
+
+1. Log into http://{{ .Values.apache.stageDomain }}/system/console/configMgr with admin / admin
+
+2. Click the plus icon under the Peregrine: PageSpeed Cache Invalidation Service configuration. An enter the following:
+
+Name = pagespeed
+Description = PageSpeed cache invalidation service
+PageSpeed cache invalidation endpoint: http://apache-live-{{ .Release.Name }}-peregrine/pagespeed_admin/cache
+
+3. Edit the Peregrine: Default Replication Mapper Service instance. There should be one already created. 
+
+4. Click the plus button under Path Mapping and add this line: 
+  
+   pagespeed:path=/content

@@ -6,6 +6,9 @@ k8s:
   apacheLiveServiceType: LoadBalancer
   apacheStageServiceType: LoadBalancer
 
+docker:
+  peregrineImageTag: sling11
+
 apache:
   liveDomain: live.peregrine.cxm
   stageDomain: stage.peregrine.cxm

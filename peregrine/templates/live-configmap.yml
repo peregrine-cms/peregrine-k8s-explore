@@ -11,4 +11,5 @@ data:
   APACHE_PROXY_URL: http://peregrine-{{ template "fullname" . }}/
   APACHE_DOMAIN: {{ .Values.apache.liveDomain }}
   PEREGRINE_SITE: {{ .Values.peregrine.site }}
+  PEREGRINE_HOSTNAME: {{ .Release.Name }}-peregrine-0.peregrine-{{ .Release.Name }}-peregrine.{{ .Release.Namespace }}.svc.cluster.local
   K8S_NAMESPACE: {{ .Release.Namespace }}
