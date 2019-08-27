@@ -14,11 +14,11 @@ fi
 ZONE=esploranto-com
 DOMAIN=esploranto.com
 
-STAGE_IP=$(kubectl get svc | grep "apache-stage" | awk '{print $3}')
+STAGE_IP=$(kubectl get svc | grep "apache-stage" | awk '{print $4}')
 STAGE_SERVICE=$(kubectl get svc | grep "apache-stage" | awk '{print $1}')
 STAGE_FQDN="${STAGE_SERVICE}.${DOMAIN}."
 
-LIVE_IP=$(kubectl get svc | grep "apache-live" | awk '{print $3}')
+LIVE_IP=$(kubectl get svc | grep "apache-live" | awk '{print $4}')
 LIVE_SERVICE=$(kubectl get svc | grep "apache-live" | awk '{print $1}')
 LIVE_FQDN="${LIVE_SERVICE}.${DOMAIN}."
 
