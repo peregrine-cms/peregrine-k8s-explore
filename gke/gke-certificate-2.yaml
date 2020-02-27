@@ -4,4 +4,4 @@ metadata:
   name: gke-certificate-2
 spec:
   domains:
-    - demo1-live.esploranto.com
+    - stage-aemaacs.headwire.com

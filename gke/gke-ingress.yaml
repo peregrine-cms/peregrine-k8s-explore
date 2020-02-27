@@ -3,19 +3,19 @@ kind: Ingress
 metadata:
   name: gke-ingress
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: esploranto-ip-address
+    kubernetes.io/ingress.global-static-ip-name: aemaacs-headwire-com-ip-address
     networking.gke.io/managed-certificates: gke-certificate-1,gke-certificate-2
 spec:
   rules:
-  - host: demo1-live.esploranto.com
+  - host: aemaacs.headwire.com
     http:
       paths:
       - backend:
-          serviceName: apache-live-demo1-peregrine
+          serviceName: apache-live-r14-peregrine
           servicePort: 80
-  - host: demo1-stage.esploranto.com
+  - host: stage-aemaacs.headwire.com
     http:
       paths:
       - backend:
-          serviceName: apache-stage-demo1-peregrine
+          serviceName: apache-stage-r14-peregrine	
           servicePort: 80

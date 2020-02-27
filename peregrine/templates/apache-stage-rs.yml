@@ -25,3 +25,9 @@ spec:
           envFrom:
           - configMapRef:
               name: "stage-{{ template "fullname" . }}"
+          readinessProbe:
+            httpGet:
+              path: /content/sites/themecleanflex/index.html
+              port: 80
+            initialDelaySeconds: 60
+            timeoutSeconds: 30
