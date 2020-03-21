@@ -61,7 +61,12 @@ The following table lists the configurable parameters of the Pergrine chart and 
 | `apache.stageDomain`                         | Apache stage domain name                          | `stage.peregrine.cxm`                  |
 | `k8s.apacheLiveServiceType`                  | Service type for live Apache service              | `LoadBalancer`                         |
 | `k8s.apacheStageServiceType`                 | Service type for stage Apache service             | `LoadBalancer`                         |
-| `docker.peregrineImageTag`                   | Docker image tag to use for Peregrine             | `sling11`                              |
+| `docker.peregrineImageTag`                   | Docker image tag to use for Peregrine             | `latest`                               |
+| `oidc.providerMetadataUrl`                   | OpenID Connect Metadata URL                       | `PLEASE_SET_ME`                        |
+| `oidc.clientId`                              | OpenID Connect Client ID                          | `PLEASE_SET_ME`                        |
+| `oidc.clientSecret`                          | OpenID Connect Client Secret                      | `PLEASE_SET_ME`                        |
+| `oidc.cryptoPassphrase`                      | OpenID Connect Crypto Passphrase                  | `PLEASE_SET_ME`                        |
+
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 

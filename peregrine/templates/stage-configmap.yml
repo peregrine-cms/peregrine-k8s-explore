@@ -12,3 +12,7 @@ data:
   APACHE_DOMAIN: {{ .Values.apache.stageDomain }}
   PEREGRINE_SITE: {{ .Values.peregrine.site }}
   K8S_NAMESPACE: {{ .Release.Namespace }}
+  OIDC_PROVIDER_METADATA_URL: {{ .Values.oidc.providerMetadataUrl }}
+  OIDC_CLIENT_ID:  {{ .Values.oidc.clientId }}
+  OIDC_CLIENT_SECRET: {{ .Values.oidc.clientSecret }}
+  OIDC_CRYPTO_PASSPHRASE: {{ .Values.oidc.cryptoPassphrase }}

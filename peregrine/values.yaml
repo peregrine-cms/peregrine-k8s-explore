@@ -12,3 +12,9 @@ docker:
 apache:
   liveDomain: live.peregrine.cxm
   stageDomain: stage.peregrine.cxm
+
+oidc:
+  providerMetadataUrl: PLEASE_SET_ME
+  clientId: PLEASE_SET_ME
+  clientSecret: PLEASE_SET_ME 
+  cryptoPassphrase: PLEASE_SET_ME
