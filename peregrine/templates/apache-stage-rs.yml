@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: "apache-stage-{{ template "fullname" . }}"
-          image: peregrinecms/apache-stage
+          image: peregrinecms/apache-stage:feature-contentrestructure-20200413r1
           ports:
           - name: http
             containerPort: 80
@@ -27,7 +27,7 @@ spec:
               name: "stage-{{ template "fullname" . }}"
           readinessProbe:
             httpGet:
-              path: /content/sites/themecleanflex/index.html
+              path: /content/themecleanflex/pages/index.html
               port: 80
             initialDelaySeconds: 60
             timeoutSeconds: 30
