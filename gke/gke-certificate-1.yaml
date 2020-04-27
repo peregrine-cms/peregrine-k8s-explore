@@ -4,4 +4,4 @@ metadata:
   name: gke-certificate-1
 spec:
   domains:
-    - aemaacs.headwire.com
+    - www.thetechprepper.com

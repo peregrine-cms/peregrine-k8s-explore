@@ -4,4 +4,4 @@ metadata:
   name: gke-certificate-2
 spec:
   domains:
-    - stage-aemaacs.headwire.com
+    - stage.thetechprepper.com

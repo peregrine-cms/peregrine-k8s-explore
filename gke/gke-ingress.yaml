@@ -3,19 +3,19 @@ kind: Ingress
 metadata:
   name: gke-ingress
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: aemaacs-headwire-com-ip-address
-    networking.gke.io/managed-certificates: gke-certificate-1,gke-certificate-2
+    kubernetes.io/ingress.global-static-ip-name: thetechprepper-com-ip-address
+    networking.gke.io/managed-certificates: gke-certificate-2,gke-certificate-3
 spec:
   rules:
-  - host: aemaacs.headwire.com
+  - host: www.thetechprepper.com
     http:
       paths:
       - backend:
-          serviceName: apache-live-r14-peregrine
+          serviceName: apache-live-r3-peregrine
           servicePort: 80
-  - host: stage-aemaacs.headwire.com
+  - host: stage.thetechprepper.com
     http:
       paths:
       - backend:
-          serviceName: apache-stage-r14-peregrine	
+          serviceName: apache-stage-r3-peregrine	
           servicePort: 80

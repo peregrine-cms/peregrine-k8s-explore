@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: "apache-live-{{ template "fullname" . }}"
-          image: peregrinecms/apache-live:feature-contentrestructure-20200413r1
+          image: peregrinecms/apache-live:feature-contentrestructure-20200427r1
           ports:
           - name: http
             containerPort: 80
