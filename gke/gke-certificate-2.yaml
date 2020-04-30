@@ -4,4 +4,4 @@ metadata:
   name: gke-certificate-2
 spec:
   domains:
-    - stage.thetechprepper.com
+    - stage-uat.thetechprepper.com

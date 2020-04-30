@@ -4,4 +4,4 @@ metadata:
   name: gke-certificate-1
 spec:
   domains:
-    - www.thetechprepper.com
+    - uat.thetechprepper.com

@@ -4,18 +4,18 @@ metadata:
   name: gke-ingress
   annotations:
     kubernetes.io/ingress.global-static-ip-name: thetechprepper-com-ip-address
-    networking.gke.io/managed-certificates: gke-certificate-2,gke-certificate-3
+    networking.gke.io/managed-certificates: gke-certificate-1,gke-certificate-2
 spec:
   rules:
-  - host: www.thetechprepper.com
+  - host: uat.thetechprepper.com
     http:
       paths:
       - backend:
-          serviceName: apache-live-r3-peregrine
+          serviceName: apache-live-uat-r1-peregrine
           servicePort: 80
-  - host: stage.thetechprepper.com
+  - host: stage-uat.thetechprepper.com
     http:
       paths:
       - backend:
-          serviceName: apache-stage-r3-peregrine	
+          serviceName: apache-stage-uat-r1-peregrine
           servicePort: 80
